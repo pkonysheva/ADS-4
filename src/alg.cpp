@@ -5,7 +5,9 @@ int countPairs1(int* arr, int len, int value) {
     int cnt = 0;
     for (int i = 0; i < len; i++) {
         for (int j = i + 1; j < len; j++) {
-            if (arr[i] + arr[j] == value) {cnt++; }
+            if (arr[i] + arr[j] == value) {
+                cnt++;
+            }
         }
     }
     return cnt;
@@ -17,12 +19,14 @@ int countPairs2(int* arr, int len, int value) {
     int r = len - 1;
 
     while (l < r) {
-        if (arr[l] + arr[r] == value) {
+        int sum = arr[l] + arr[r];
+        if (sum == value) {
             cnt++;
             l++;
             r--;
-        } else if (arr[l] + arr[r] < value) {
-            l++; } else {
+        } else if (sum < value) {
+            l++;
+        } else {
             r--;
         }
     }
@@ -34,13 +38,11 @@ int countPairs3(int* arr, int len, int value) {
 
     for (int i = 0; i < len; i++) {
         int set = value - arr[i];
-
         int l = i + 1;
         int r = len - 1;
 
         while (l <= r) {
             int mid = l + (r - l) / 2;
-
             if (arr[mid] == set) {
                 cnt++;
                 break;
